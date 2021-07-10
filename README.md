@@ -1,4 +1,4 @@
-# Portal
+# Portal 🌀
 
 `ContainerViewController` is a container view controller designed to display other view controllers.
 
@@ -21,7 +21,7 @@ Cookbook.shared.search("spaghetti") { result in
 
 ## Installation
 
-Portal is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, simply add it as a dependency within your Package.swift manifest:
+Portal is distributed using [Swift Package Manager](https://swift.org/package-manager). To install it into a project, simply add it as a dependency within your Package.swift manifest:
 ```swift
 let package = Package(
     ...
