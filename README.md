@@ -72,6 +72,6 @@ extension ContainerViewControllerTransition {
 containerViewController.transition = .slide(direction: .leftToRight)
 ```
 
-### Credits
+## Credits
 
 This library was inspired by Dave DeLong's [A Better MVC](https://davedelong.com/blog/tags/a-better-mvc/) blog post series.
