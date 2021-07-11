@@ -10,7 +10,7 @@ public class ContainerViewController: UIViewController {
     
     public override var childForStatusBarStyle: UIViewController? { content }
     
-    public var transition: ContainerViewControllerTransition? = .default
+    public var transition: Transition? = .default
     
     public var content: UIViewController? {
         get { _content }
@@ -82,5 +82,41 @@ public class ContainerViewController: UIViewController {
         )
         
         transition.animate(using: context)
+    }
+}
+
+public extension ContainerViewController {
+    
+    struct Transition {
+        
+        private let animator: UIViewControllerAnimatedTransitioning
+        
+        private init(animator: UIViewControllerAnimatedTransitioning) {
+            self.animator = animator
+        }
+        
+        func animate(using transitionContext: ContainerViewControllerTransitionContext) {
+            animator.animateTransition(using: transitionContext)
+        }
+        
+        func animationEnded(_ transitionCompleted: Bool) {
+            animator.animationEnded?(transitionCompleted)
+        }
+    }
+}
+
+public extension ContainerViewController.Transition {
+    
+    static var `default`: Self {
+        .fade(duration: 0.25)
+    }
+    
+    static func fade(duration: TimeInterval) -> Self {
+        let fadeAnimator = FadeAnimator(duration: duration)
+        return custom(animator: fadeAnimator)
+    }
+    
+    static func custom(animator: UIViewControllerAnimatedTransitioning) -> Self {
+        ContainerViewController.Transition(animator: animator)
     }
 }
