@@ -10,7 +10,7 @@ public class ContainerViewController: UIViewController {
     
     public override var childForStatusBarStyle: UIViewController? { content }
     
-    public var transition: Transition? = .default
+    public var preferredTransition: Transition? = .default
     
     public var content: UIViewController? {
         get { _content }
@@ -29,7 +29,13 @@ public class ContainerViewController: UIViewController {
     }
     
     public func setContent(_ content: UIViewController?, animated: Bool) {
-        transition(from: _content, to: content, animated: animated)
+        self.transition(from: _content, to: content, transition: animated ? preferredTransition : nil)
+        _content = content
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    public func setContent(_ content: UIViewController?, using transition: Transition?) {
+        self.transition(from: _content, to: content, transition: transition)
         _content = content
         setNeedsStatusBarAppearanceUpdate()
     }
@@ -37,7 +43,7 @@ public class ContainerViewController: UIViewController {
     private func transition(
         from fromViewController: UIViewController?,
         to toViewController: UIViewController?,
-        animated: Bool
+        transition: Transition?
     ) {
         if
             let toViewController = toViewController,
@@ -64,7 +70,6 @@ public class ContainerViewController: UIViewController {
         }
         
         guard
-            animated,
             let transition = transition,
             viewIfLoaded?.window != nil
         else {
