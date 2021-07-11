@@ -8,29 +8,29 @@ import UIKit
 
 public class ContainerViewController: UIViewController {
     
-    public override var childForStatusBarStyle: UIViewController? { viewController }
+    public override var childForStatusBarStyle: UIViewController? { content }
     
     public var transition: ContainerViewControllerTransition? = .default
     
-    public var viewController: UIViewController? {
-        get { _viewController }
-        set { setViewController(newValue, animated: false) }
+    public var content: UIViewController? {
+        get { _content }
+        set { setContent(newValue, animated: false) }
     }
     
-    private var _viewController: UIViewController?
+    private var _content: UIViewController?
             
-    public init(viewController: UIViewController? = nil) {
+    public init(content: UIViewController? = nil) {
         super.init(nibName: nil, bundle: nil)
-        self.viewController = viewController
+        self.content = content
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    public func setViewController(_ viewController: UIViewController?, animated: Bool) {
-        transition(from: _viewController, to: viewController, animated: animated)
-        _viewController = viewController
+    public func setContent(_ content: UIViewController?, animated: Bool) {
+        transition(from: _content, to: content, animated: animated)
+        _content = content
         setNeedsStatusBarAppearanceUpdate()
     }
     
