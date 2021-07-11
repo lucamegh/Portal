@@ -48,7 +48,7 @@ containerViewController.setContent(articleViewController, animated: true)
 ```
 
 ### Custom transitions
-To create a custom transiton, use the `ContainerViewControllerTransition.custom(animator:)` method. This method accepts an object conforming to the `UIViewControllerAnimatedTransitioning` protocol.
+To create a custom transiton, use the `ContainerViewController.Transition.custom(animator:)` method. This method accepts an object conforming to the `UIViewControllerAnimatedTransitioning` protocol.
 
 ```swift
 class SlideAnimator: NSObject, UIViewControllerAnimatedTransitioning { ... }
@@ -61,7 +61,7 @@ containerViewController.transition = .custom(animator: slideAnimator)
 If you're going to reuse a custom transiton across your project, you might find it useful to create a static factory method like this:
 
 ```swift
-extension ContainerViewControllerTransition {
+extension ContainerViewController.Transition {
 
     static func slide(direction: SlideAnimator.Direction) -> Self {
         let slideAnimator = SlideAnimator(direction: direction)
