@@ -1,6 +1,6 @@
 # Portal 🌀
 
-`ContainerViewController` is a container view controller designed to display other view controllers.
+`ContainerViewController` is a container view controller (duh!) designed to display other view controllers.
 
 ```swift
 import Portal
