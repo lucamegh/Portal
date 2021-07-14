@@ -55,7 +55,7 @@ class SlideAnimator: NSObject, UIViewControllerAnimatedTransitioning { ... }
 
 let slideAnimator = SlideAnimator(direction: .leftToRight)
 
-containerViewController.transition = .custom(animator: slideAnimator)
+containerViewController.preferredTransition = .custom(animator: slideAnimator)
 ```
 
 If you're going to reuse a custom transiton across your project, you might find it useful to create a static factory method like this:
@@ -69,7 +69,7 @@ extension ContainerViewController.Transition {
     }
 }
 
-containerViewController.transition = .slide(direction: .leftToRight)
+containerViewController.preferredTransition = .slide(direction: .leftToRight)
 ```
 
 ## Credits
